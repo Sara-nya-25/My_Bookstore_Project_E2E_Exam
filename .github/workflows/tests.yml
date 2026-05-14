@@ -27,4 +27,5 @@ jobs:
 
     - name: Run All tests
       run: |
+        cd My_Bookstore_Project_E2E_Exam
         behave
