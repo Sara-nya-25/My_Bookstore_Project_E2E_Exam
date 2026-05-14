@@ -1,7 +1,6 @@
-AC 1: Book Management
-- The "Katalog" page must list all books currently in the database.
-- Each book entry should display the title and author clearly.
-- The system should handle empty catalogs gracefully with a placeholder message.
+AC 1: Catalog Visibility
+1.1 The "Katalog" page must list all books currently in the database.
+1.2 Each book entry should display the title and author clearly.
 
 AC 2: Book Management
 - I can add a new book to the catalog.
