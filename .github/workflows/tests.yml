@@ -24,8 +24,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install behave playwright
         playwright install chromium --with-deps
+      working-directory: Backend
 
     - name: Run All tests
       run: |
-        cd My_Bookstore_Project_E2E_Exam
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
         behave
+      working-directory: Backend
