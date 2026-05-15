@@ -33,4 +33,4 @@ jobs:
       working-directory: Backend
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd):$(pwd)/src
-        behave
+        xvfb-run behave

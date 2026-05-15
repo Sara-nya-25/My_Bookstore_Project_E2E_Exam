@@ -8,7 +8,7 @@ def before_all(context):
     # Start Playwright
     context.playwright = sync_playwright().start()
     # Launch browser (headless=False lets you see the browser during local runs)
-    context.browser_instance = context.playwright.chromium.launch(headless=False, slow_mo=1000)
+    context.browser_instance = context.playwright.chromium.launch(headless=True, slow_mo=1000)
     # Create a new browser context (similar to a clean incognito window)
     context.browser_context = context.browser_instance.new_context(locale="en-US", extra_http_headers={"Accept-Language": "en-US,en;q=0.9"})
     # Create the page object
@@ -16,5 +16,7 @@ def before_all(context):
 
 def after_all(context):
     # Clean up
-    context.browser_instance.close()
-    context.playwright.stop()
+    if hasattr(context, 'browser'):
+        context.browser.close()
+    if hasattr(context, 'playwright'):
+        context.playwright.stop()
