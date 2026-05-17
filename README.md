@@ -11,14 +11,6 @@ This project uses TDD approach to test the core backend logic using unit and int
 * **Unit/Integration Testing:** [Pytest](https://docs.pytest.org/)
 * **Testing Methodology:** Behavior-Driven Development (BDD) / Acceptance Testing
 
-### 📐 The Testing Pyramid Breakdowns
-
-* **70% Unit Tests (Driven by TDD):** Located under `tests/unit/`. These cover every minor edge case of string formatting, mathematical statistics calculations, and server-side data validation rules quickly and in absolute isolation.
-* **20% Integration Tests:** Located under `tests/integration/`. These secure critical API endpoint paths and structural database state transitions, confirming that separate modules seamlessly communicate.
-* **10% End-to-End & UI Tests (Driven by BDD):** Located under `features/`. These use Playwright and Behave to mimic real human journeys—such as creating accounts, saving titles, interacting with toggle attributes, and validating live math updates on the UI.
-
-> **Why this breakdown?** Over-indexing on high-level E2E tests makes a test suite slow, expensive to run in deployment pipelines, and vulnerable to "flakiness" (failing due to network timing rather than logic bugs). Using unit tests for isolated heavy lifting and E2E for critical paths guarantees a fast, reliable, and bug-free delivery pipeline.
-
 ## 📁 Project Structure
 
 The project structure is split between behavior-driven acceptance tests and micro-level unit/integration tests:
