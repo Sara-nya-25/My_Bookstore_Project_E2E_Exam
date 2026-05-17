@@ -1,7 +1,7 @@
 from behave import given, when, then
 from playwright.sync_api import expect
 # AC 1.1 & 1.2
-@given('There are books in the database')
+@given('there are books in the database')
 def step_impl(context):
     # In your case, the home page is the catalog
     context.page.goto("https://tap-ht25-testverktyg.github.io/exam/")
