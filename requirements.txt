@@ -1,2 +1,10 @@
-behave
-pytest
+# Core Language & BDD Framework
+python-version==3.11
+behave==1.2.6
+
+# Automation & Browser Engine
+playwright==1.49.0
+
+# Testing & Assertions (Optional but recommended for Unit/Integration mix)
+pytest==8.0.0
+pytest-playwright==0.5.0
