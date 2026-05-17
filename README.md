@@ -41,10 +41,10 @@ My_Bookstore_Project_E2E_Exam/
     ├── src/                     # Core production application source code
     │
     ├── tests/                   # Developer TDD Testing Suite
-    │   ├── integration/         # API and Database interaction checks
-    │   └── unit/                # Isolated functional boundary checks
+    │   ├── integration/         # Integration tests
+    │   └── unit/                # functional unit tests
     │
-    ├── Acceptance_criteria.md   # Project assignment criteria requirements
+    ├── Acceptance_criteria.md   # Project acceptance criteria requirements
     ├── Answers.md               # Theoretical question responses
     ├── behave.ini               # Configuration profile for Behave runtime parameters
     ├── pytest.ini               # Configuration profile for Pytest execution limits
@@ -54,7 +54,7 @@ My_Bookstore_Project_E2E_Exam/
 ## 🚀 Features Tested
 * **Add New Books:** Verifies that users can add titles and authors to the catalog.
 * **UI Tab Navigation:** Ensures correct behavior when switching between the "Add Book" form and the "Catalog" list.
-* **Input Validation:** Checks that the "Add" button is disabled when fields are incomplete.
+* **Input Validation:** Checks that the "Add new book" button is disabled when fields are incomplete.
 * **Localization Resilience:** Tests are designed to handle automatic browser translations using Regex patterns.
 
 ## 🛠️ Installation
@@ -80,18 +80,22 @@ My_Bookstore_Project_E2E_Exam/
    
 ## 🧪 Running Tests
 
-#### **To run the full test suite:**
-    ```bash
-       behave
+#### To run the full test suite:
 
-#### **To display print() logs or live debugging outputs without background capture, run:**
-      ```bash
-       behave --no-capture
-    
-#### **To run a specific feature:**
-    ```bash
-       behave features/add_book.feature
+   ```bash   
+      behave
+   ```
+#### To display print() logs or live debugging outputs without background capture, run:
 
+   ```bash
+      behave --no-capture 
+   ```
+#### To run a specific feature:
+
+   ```bash
+      behave features/add_book.feature
+   ``` 
+   
 ### 🏗️ CI/CD
 This project uses GitHub Actions to automatically run tests on every push to the main or master branch.
 All implemented unit, integration, and behavioral specs are automated to execute seamlessly as continuous **Regression Tests** within the project's CI/CD environment pipelines (`.github/`), 
