@@ -1,0 +1,83 @@
+Feature: Add new books to the catalog # features/add_book.feature:1
+
+  Scenario: Successfully add a new book                                   # features/add_book.feature:3
+    Given I am on the "Add book" page                                     # features/steps/add_books_steps.py:7
+    When I enter "Astrid Lindgren" in the author field                    # features/steps/add_books_steps.py:15
+    And "Pippi Långstrump" in the title field                             # features/steps/add_books_steps.py:20
+    And I click "Add new book"                                            # features/steps/add_books_steps.py:25
+    Then the book list should contain "Pippi Långstrump", Astrid Lindgren # features/steps/add_books_steps.py:35
+    And the input fields should be cleared                                # features/steps/add_books_steps.py:47
+
+  Scenario: Add button is disabled for incomplete entries  # features/add_book.feature:12
+    Given I am on the "Add book" page                      # features/steps/add_books_steps.py:7
+    When I enter "Astrid Lindgren" in the author field     # features/steps/add_books_steps.py:15
+    But I leave the title field empty                      # features/steps/add_books_steps.py:42
+    Then the "Add new book" button should be disabled      # features/steps/add_books_steps.py:57
+
+  Scenario: Try to add a book with empty fields       # features/add_book.feature:18
+    Given I am on the "Add book" page                 # features/steps/add_books_steps.py:7
+    When I leave the title field empty                # features/steps/add_books_steps.py:42
+    And I leave the author field empty                # features/steps/add_books_steps.py:53
+    Then the "Add new book" button should be disabled # features/steps/add_books_steps.py:57
+
+Feature: Book Catalog Management # features/catalog.feature:1
+
+  Scenario: Verify book details in catalog                      # features/catalog.feature:2
+    Given there are books in the database                       # features/steps/view_catalog_steps.py:4
+    When I navigate to the "Katalog" page                       # features/steps/view_catalog_steps.py:9
+    Then I should see the title and author for every book entry # features/steps/view_catalog_steps.py:13
+
+Feature: Favorites Management # features/favorites.feature:1
+
+  Scenario: Verify favorite icons are not visible in the Catalog     # features/favorites.feature:3
+    Given I am on the "Katalog" page                                 # features/steps/favorite_ui_steps.py:6
+    Then I should see the list of books                              # features/steps/favorite_ui_steps.py:52
+    And there should be no "heart" icons visible on the book entries # features/steps/favorite_ui_steps.py:58
+
+  Scenario: Favorites tab is empty by default                                         # features/favorites.feature:8
+    Given I have not marked any books as favorites                                    # features/steps/favorite_ui_steps.py:11
+    When I click on the "Mina böcker" tab                                             # features/steps/favorite_ui_steps.py:40
+    Then the favorites list should be empty                                           # features/steps/favorite_ui_steps.py:80
+    And I should see a message "När du valt, kommer dina favoritböcker att visas här" # features/steps/favorite_ui_steps.py:85
+
+  Scenario: View list of favorite books                                    # features/favorites.feature:14
+    Given I have marked "The Pragmatic Procrastinator" as a favorite       # features/steps/favorite_ui_steps.py:20
+    When I click on the "Mina böcker" tab                                  # features/steps/favorite_ui_steps.py:40
+    Then I should see "The Pragmatic Procrastinator" in the favorites list # features/steps/favorite_ui_steps.py:91
+
+Feature: Website Navigation # features/navigation.feature:1
+
+  Scenario Outline: Toggle between different views -- @1.1   # features/navigation.feature:10
+    Given I am on the home page                              # features/steps/navigation_ui_steps.py:5
+    When I click on the "Katalog" navigation button          # features/steps/navigation_ui_steps.py:13
+    Then the page content should display "Välkommen!"        # features/steps/navigation_ui_steps.py:42
+
+  Scenario Outline: Toggle between different views -- @1.2   # features/navigation.feature:11
+    Given I am on the home page                              # features/steps/navigation_ui_steps.py:5
+    When I click on the "Lägg till bok" navigation button    # features/steps/navigation_ui_steps.py:13
+    Then the page content should display "Välkommen!"        # features/steps/navigation_ui_steps.py:42
+
+  Scenario Outline: Toggle between different views -- @1.3   # features/navigation.feature:12
+    Given I am on the home page                              # features/steps/navigation_ui_steps.py:5
+    When I click on the "Mina böcker" navigation button      # features/steps/navigation_ui_steps.py:13
+    Then the page content should display "När du valt"       # features/steps/navigation_ui_steps.py:42
+
+  Scenario Outline: Toggle between different views -- @1.4   # features/navigation.feature:13
+    Given I am on the home page                              # features/steps/navigation_ui_steps.py:5
+    When I click on the "Statistik" navigation button        # features/steps/navigation_ui_steps.py:13
+    Then the page content should display "Listan har"        # features/steps/navigation_ui_steps.py:42
+
+Feature: Reading Statistics # features/statistics.feature:1
+
+  Scenario: View total book count                 # features/statistics.feature:3
+    Given I have 13 books in my catalog           # features/steps/statistics_steps.py:7
+    When I add 2 new books to my catalog          # features/steps/statistics_steps.py:15
+    And I navigate to the "Statistics" tab        # features/steps/statistics_steps.py:46
+    Then the total count display should show "15" # features/steps/statistics_steps.py:53
+
+  Scenario: View favorite books count                                    # features/statistics.feature:9
+    Given I have 15 books in my catalog                                  # features/steps/statistics_steps.py:7
+    When I mark 2 books as "heart" favorites                             # features/steps/statistics_steps.py:27
+    And I navigate to the "Statistik" tab                                # features/steps/statistics_steps.py:46
+    Then I should see a text "Våra användare har hjärtmarkerat 2 böcker" # features/steps/statistics_steps.py:60
+
