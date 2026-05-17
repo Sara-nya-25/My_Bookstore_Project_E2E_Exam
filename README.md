@@ -6,7 +6,7 @@ This project uses TDD approach to test the core backend logic using unit and int
 
 ## 🛠️ Tech Stack & Architecture
 
-* **Automation Framework:** [Behave](https://behave.readthedocs.io/) (Python implementation of Cucumber)
+* **Automation Framework:** [Behave](https://behave.readthedocs.io/)
 * **Browser Automation Engine:** [Playwright for Python](https://playwright.dev/python/)
 * **Unit/Integration Testing:** [Pytest](https://docs.pytest.org/)
 * **Testing Methodology:** Behavior-Driven Development (BDD) / Acceptance Testing
@@ -82,11 +82,15 @@ My_Bookstore_Project_E2E_Exam/
 
 #### **To run the full test suite:**
     ```bash
-    behave
+       behave
 
+#### **To display print() logs or live debugging outputs without background capture, run:**
+      ```bash
+       behave --no-capture
+    
 #### **To run a specific feature:**
     ```bash
-    behave features/add_book.feature
+       behave features/add_book.feature
 
 ### 🏗️ CI/CD
 This project uses GitHub Actions to automatically run tests on every push to the main or master branch.
