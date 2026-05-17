@@ -20,5 +20,5 @@ So that I can quickly access the catalog, my favorites, or system statistics.
 
 Story 5:
 As a store administrator,
-I want to view data regarding the library's size and user engagement,
+I want to view real-time data regarding the library's size and user's favourite,
 So that I can track how the collection is growing and which books are popular.

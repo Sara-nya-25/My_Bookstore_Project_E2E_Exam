@@ -2,9 +2,13 @@ class Book:
     """Represents an individual book."""
 
     def __init__(self, book_id, title, author, fav=False):
+        if not title.strip():
+            raise ValueError("Book title cannot be empty or whitespace.")
+        if not author.strip():
+            raise ValueError("Book author cannot be empty or whitespace.")
         self.id = book_id
-        self.title = title
-        self.author = author
+        self.title = title.strip()
+        self.author = author.strip()
         self.is_favorite = fav
 
     def toggle_fav(self):
@@ -54,6 +58,7 @@ class Bookstore:
             book.is_favorite = not book.is_favorite
         else:
             raise ValueError(f"Book '{title_or_id}' not found.")
+
     def get_all_books(self):
         """Returns all books in the catalog."""
         return self.books

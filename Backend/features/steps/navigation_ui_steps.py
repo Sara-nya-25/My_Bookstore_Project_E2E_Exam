@@ -4,7 +4,7 @@ from playwright.sync_api import expect
 
 @given('I am on the home page')
 def step_impl(context):
-    # Navigate to the base URL of your application
+    # Navigate to the base URL of the application
     context.page.goto("https://tap-ht25-testverktyg.github.io/exam/")
     # Ensure the page is loaded by waiting for a core element
     expect(context.page.locator("nav")).to_be_visible()
@@ -32,8 +32,8 @@ def step_impl(context, button_text):
         # Fallback: Find by role/text if not in the map
         button = context.page.get_by_role("button", name=button_text)
 
-        # 3. Handle the "Disabled" state to prevent TargetClosedError
-        # Active tabs in this app are disabled; we only click if it's enabled.
+        # Handle the "Disabled" state to prevent TargetClosedError
+        # we only click if it's enabled.
     if button.is_enabled():
         button.click()
     else:
@@ -41,10 +41,6 @@ def step_impl(context, button_text):
 
 @then('the page content should display "{expected_text}"')
 def step_impl(context, expected_text):
-    # We look for the heading text anywhere on the page.
-    # 'expect' provides a built-in retry mechanism if the page takes
-    # a moment to switch views.
-    #heading = context.page.get_by_role("heading")
 
     # We check if the expected heading text is contained within the visible headings
     expect(context.page.locator("main")).to_contain_text(expected_text)
